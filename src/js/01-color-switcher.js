@@ -5,19 +5,25 @@ function getRandomHexColor() {
 }
 
 const buttonStartEl = document.querySelector('[data-start]');
-console.log(buttonStartEl);
+
 const buttonStopEl = document.querySelector('[data-stop]');
-console.log(buttonStopEl);
+
 const bodyEl = document.querySelector('body');
+
 buttonStartEl.addEventListener('click', onBtnStartClick);
 buttonStopEl.addEventListener('click', onBtnStopClick);
+let id = null;
+
 function onBtnStartClick() {
-  const id = setInterval(() => {
+  id = setInterval(() => {
     const newColor = getRandomHexColor();
     bodyEl.style.backgroundColor = newColor;
-    buttonStartEl.setAttribute(disabled);
+    buttonStartEl.disabled = true;
+    buttonStopEl.disabled = false;
   }, 1000);
 }
 function onBtnStopClick() {
   clearInterval(id);
+  buttonStartEl.disabled = false;
+  buttonStopEl.disabled = true;
 }
