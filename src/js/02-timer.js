@@ -40,12 +40,12 @@ const fp = flatpickr('#datetime-picker', options);
 
 function onBtnStartClick() {
   const selectedDate = fp.selectedDates[0];
-
+  btnStart.disabled = true;
+  inputEl.disabled = true;
   intervalId = setInterval(() => {
     const startTime = new Date();
     const differenceTime = selectedDate - startTime;
 
-    btnStart.disabled = true;
     if (differenceTime < 0) {
       clearInterval(this.intervalId);
       return;
